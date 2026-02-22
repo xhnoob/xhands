@@ -193,6 +193,15 @@ def log(message, level="info"):
         print(f"{Colors.CYAN}[{timestamp}] {message}{Colors.RESET}")
 
 def launch_gui():
+    if hasattr(sys, 'frozen'):
+        print(f"{Colors.GREEN}正在启动 xHands GUI...{Colors.RESET}")
+        import tkinter as tk
+        from xHands import WorkflowAutomationTool
+        root = tk.Tk()
+        app = WorkflowAutomationTool(root)
+        root.mainloop()
+        return True
+    
     gui_path = os.path.join(current_dir, "Hands.py")
     if not os.path.exists(gui_path):
         gui_path = os.path.join(current_dir, "xHands.py")

@@ -10,33 +10,52 @@ xHands - 工作流自动化工具
 import sys
 import os
 
-def is_running_from_terminal():
+def is_running_from_explorer():
+    """
+    检测是否从资源管理器双击启动
+    """
     if len(sys.argv) > 1:
-        return True
-    
-    if sys.stdout.isatty():
-        return True
+        return False
     
     if hasattr(sys, 'frozen'):
         try:
             import ctypes
             kernel32 = ctypes.windll.kernel32
+            
             console_hwnd = kernel32.GetConsoleWindow()
             if console_hwnd == 0:
-                return False
-            
-            parent_pid = ctypes.windll.kernel32.GetProcessId(
-                ctypes.windll.kernel32.GetParentProcess(
-                    ctypes.windll.kernel32.GetCurrentProcess()
-                )
-            )
-            
-            if parent_pid > 0:
                 return True
-        except:
+            
+            import psutil
+            current_pid = os.getpid()
+            try:
+                current_process = psutil.Process(current_pid)
+                parent = current_process.parent()
+                if parent:
+                    parent_name = parent.name().lower()
+                    if parent_name == 'explorer.exe':
+                        return True
+                    if parent_name in ['cmd.exe', 'powershell.exe', 'pwsh.exe', 'windowsterminal.exe']:
+                        return False
+            except:
+                pass
+            
+            process_list = (ctypes.c_ulong * 256)()
+            process_count = kernel32.GetConsoleProcessList(process_list, 256)
+            
+            if process_count == 1:
+                return True
+            
+        except Exception:
             pass
     
-    return False
+    if hasattr(sys, 'frozen'):
+        return True
+    
+    if sys.stdout.isatty():
+        return False
+    
+    return True
 
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -44,15 +63,17 @@ def main():
     if hasattr(sys, 'frozen'):
         current_dir = os.path.dirname(sys.executable)
     
-    if is_running_from_terminal():
-        from xHands_cli import main as cli_main
-        cli_main()
-    else:
+    os.chdir(current_dir)
+    
+    if is_running_from_explorer():
         import tkinter as tk
         from xHands import WorkflowAutomationTool
         root = tk.Tk()
         app = WorkflowAutomationTool(root)
         root.mainloop()
+    else:
+        from xHands_cli import main as cli_main
+        cli_main()
 
 if __name__ == "__main__":
     main()
