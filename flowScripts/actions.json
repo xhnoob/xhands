@@ -1,0 +1,117 @@
+[
+  {
+    "id": "action_3",
+    "name": "下一个视频",
+    "type": "mouse",
+    "image_path": "screenShot/next.png"
+  },
+  {
+    "id": "action_4",
+    "name": "点开评论区",
+    "type": "mouse",
+    "image_path": "screenShot/DianKaiPingLun.png"
+  },
+  {
+    "id": "action_8",
+    "name": "豆包截图",
+    "type": "keyboard",
+    "keys": "alt+shift+A"
+  },
+  {
+    "id": "action_9",
+    "name": "问问豆包",
+    "type": "mouse",
+    "image_path": "screenShot/wenwendoubao.png",
+    "accuracy": 0.9
+  },
+  {
+    "id": "action_10",
+    "name": "豆包提示词",
+    "type": "clipboard_write",
+    "text": "这是一张抖音某视频的评论区截图，请你根据图片上的所有信息，并参考别人的评论，帮我写一条可能成为热评的评论，给出的结果不要包含任何其他任何文字，只要单纯的结果就行，让我能直接复制这个结果"
+  },
+  {
+    "id": "action_13",
+    "name": "复制",
+    "type": "keyboard",
+    "keys": "ctrl+c"
+  },
+  {
+    "id": "action_14",
+    "name": "粘贴",
+    "type": "keyboard",
+    "keys": "ctrl+V"
+  },
+  {
+    "id": "action_16",
+    "name": "读取剪贴板",
+    "type": "clipboard_read"
+  },
+  {
+    "id": "action_20",
+    "name": "鼠标点击豆包复制",
+    "type": "mouse",
+    "image_path": "screenShot/doubaofuzhi.png",
+    "accuracy": 0.9
+  },
+  {
+    "id": "action_22",
+    "name": "鼠标点击抖音留下评论",
+    "type": "mouse",
+    "image_path": "screenShot/liuxiapinglun.png",
+    "accuracy": 0.9
+  },
+  {
+    "id": "action_25",
+    "name": "鼠标点击豆包发消息框",
+    "type": "mouse",
+    "image_path": "screenShot/faxxiaoxi.png",
+    "accuracy": 0.9
+  },
+  {
+    "id": "action_27",
+    "name": "鼠标点击抖音发送评论",
+    "type": "mouse",
+    "image_path": "screenShot/douyinfasong.png",
+    "accuracy": 0.9
+  },
+  {
+    "id": "action_37",
+    "name": "判断是否思考完毕",
+    "type": "condition",
+    "image_path": "screenShot/douobaosikao.png",
+    "accuracy": 0.9,
+    "found_behavior": "continue",
+    "not_found_behavior": "wait",
+    "jump_to": 1
+  },
+  {
+    "id": "action_40",
+    "name": "判断是否直播间",
+    "type": "condition",
+    "condition_type": "image",
+    "image_path": "screenShot/panduanzhibojian.png",
+    "accuracy": 0.9,
+    "found_behavior": "restart",
+    "not_found_behavior": "jump",
+    "jump_to": 1
+  },
+  {
+    "id": "action_41",
+    "name": "按下回车键",
+    "type": "keyboard",
+    "trigger_type": "none",
+    "keys": "enter"
+  },
+  {
+    "id": "action_43",
+    "name": "判断是否广告",
+    "type": "condition",
+    "condition_type": "image",
+    "image_path": "screenShot/panduanguanggao.png",
+    "accuracy": 0.9,
+    "found_behavior": "restart",
+    "not_found_behavior": "jump",
+    "jump_to": 1
+  }
+]

@@ -1,0 +1,255 @@
+{
+  "name": "douyinpinglun",
+  "steps": [
+    {
+      "id": "action_11",
+      "name": "启动抖音应用",
+      "type": "system_command",
+      "cmd_type": "launch_app",
+      "app_path": "YOUR_DOUYIN_PATH/douyin.exe"
+    },
+    {
+      "id": "delay_1771591317",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_14",
+      "name": "固定抖音窗体",
+      "type": "system_command",
+      "cmd_type": "set_window",
+      "window_title": "抖音",
+      "window_class": "Chrome_WidgetWin_1",
+      "window_x": 97,
+      "window_y": 43,
+      "window_width": 960,
+      "window_height": 1283
+    },
+    {
+      "id": "delay_1771591270",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_16",
+      "name": "启动豆包应用",
+      "type": "system_command",
+      "cmd_type": "launch_app",
+      "app_path": "YOUR_DOUBAO_PATH/Doubao.exe"
+    },
+    {
+      "id": "delay_1771591352",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_18",
+      "name": "固定豆包窗体",
+      "type": "system_command",
+      "cmd_type": "set_window",
+      "window_title": "豆包",
+      "window_class": "Chrome_WidgetWin_1",
+      "window_x": 1535,
+      "window_y": 194,
+      "window_width": 978,
+      "window_height": 969
+    },
+    {
+      "id": "delay_1771591371",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_3",
+      "name": "下一个视频",
+      "type": "mouse",
+      "image_path": "screenShot/next.png"
+    },
+    {
+      "id": "delay_1771269823",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_40",
+      "name": "判断是否直播间",
+      "type": "condition",
+      "condition_type": "image",
+      "image_path": "screenShot/panduanzhibojian.png",
+      "accuracy": 0.9,
+      "found_behavior": "restart",
+      "not_found_behavior": "jump",
+      "jump_to": 1
+    },
+    {
+      "id": "action_43",
+      "name": "判断是否广告",
+      "type": "condition",
+      "condition_type": "image",
+      "image_path": "screenShot/panduanguanggao.png",
+      "accuracy": 0.9,
+      "found_behavior": "restart",
+      "not_found_behavior": "jump",
+      "jump_to": 1
+    },
+    {
+      "id": "delay_1771135497",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_26",
+      "name": "豆包截图",
+      "type": "doubao_screenshot"
+    },
+    {
+      "id": "action_3",
+      "name": "下一个视频",
+      "type": "mouse",
+      "image_path": "screenShot/next.png"
+    },
+    {
+      "id": "delay_1771135507",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_9",
+      "name": "问问豆包",
+      "type": "mouse",
+      "image_path": "screenShot/wenwendoubao.png",
+      "accuracy": 0.9
+    },
+    {
+      "id": "delay_1771136027",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_25",
+      "name": "鼠标点击豆包发消息框",
+      "type": "mouse",
+      "image_path": "screenShot/faxxiaoxi.png",
+      "accuracy": 0.9
+    },
+    {
+      "id": "delay_1771136147",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_10",
+      "name": "豆包提示词",
+      "type": "clipboard_write",
+      "text": "这是一张抖音某视频的评论区截图，请你根据图片上的所有信息，并参考别人的评论，帮我写一条可能成为热评的评论，给出的结果不要包含任何其他任何文字，只要单纯的结果就行，让我能直接复制这个结果"
+    },
+    {
+      "id": "delay_1771136201",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_14",
+      "name": "粘贴",
+      "type": "keyboard",
+      "keys": "ctrl+V"
+    },
+    {
+      "id": "delay_1771136208",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_41",
+      "name": "按下回车键",
+      "type": "keyboard",
+      "trigger_type": "none",
+      "keys": "enter"
+    },
+    {
+      "id": "delay_1771137432",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_37",
+      "name": "判断是否思考完毕",
+      "type": "condition",
+      "image_path": "screenShot/douobaosikao.png",
+      "accuracy": 0.9,
+      "found_behavior": "continue",
+      "not_found_behavior": "wait",
+      "jump_to": 1
+    },
+    {
+      "id": "delay_1771137437",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_20",
+      "name": "鼠标点击豆包复制",
+      "type": "mouse",
+      "image_path": "screenShot/doubaofuzhi.png",
+      "accuracy": 0.9
+    },
+    {
+      "id": "delay_1771137489",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_22",
+      "name": "鼠标点击抖音留下评论",
+      "type": "mouse",
+      "image_path": "screenShot/liuxiapinglun.png",
+      "accuracy": 0.9
+    },
+    {
+      "id": "delay_1771137573",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_14",
+      "name": "粘贴",
+      "type": "keyboard",
+      "keys": "ctrl+V"
+    },
+    {
+      "id": "delay_1771137660",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    },
+    {
+      "id": "action_27",
+      "name": "鼠标点击抖音发送评论",
+      "type": "mouse",
+      "image_path": "screenShot/douyinfasong.png",
+      "accuracy": 0.9
+    },
+    {
+      "id": "delay_1771137670",
+      "name": "延迟操作",
+      "type": "delay",
+      "duration": 1
+    }
+  ],
+  "created_at": "2026-02-21T03:16:49.726893"
+}

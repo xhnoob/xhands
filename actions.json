@@ -1,0 +1,19 @@
+[
+  {
+    "id": "action_1",
+    "name": "读取剪贴板",
+    "type": "clipboard_read"
+  },
+  {
+    "id": "action_2",
+    "name": "按下回车键",
+    "type": "keyboard",
+    "trigger_type": "none",
+    "keys": "enter"
+  },
+  {
+    "id": "action_3",
+    "name": "豆包截图",
+    "type": "doubao_screenshot"
+  }
+]
