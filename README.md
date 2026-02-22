@@ -30,6 +30,8 @@ dist/
 └── flowPY/           # 导出脚本
 ```
 
+> **如果双击提示"此应用无法在你的电脑上运行"**，请安装 [Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe) 后重试。
+
 ### 方式二：从源码运行(直接使用EXE不用看这个)
 
 ```bash
