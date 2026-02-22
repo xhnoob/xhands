@@ -103,6 +103,13 @@ class WorkflowAutomationTool:
         self.root.title(_T)
         self.root.geometry("800x750")
         self.root.resizable(True, True)
+        
+        icon_path = os.path.join(current_dir, 'xhands.ico')
+        if os.path.exists(icon_path):
+            try:
+                self.root.iconbitmap(icon_path)
+            except:
+                pass
 
         # 创建操作列表
         self.actions = []
@@ -752,6 +759,8 @@ class WorkflowAutomationTool:
             self.workflow_dir_var.set(dir_path)
 
     def get_xhands_command_path(self):
+        if hasattr(sys, 'frozen'):
+            return os.path.dirname(sys.executable)
         return current_dir
 
     def refresh_cmd_status(self):
@@ -828,16 +837,25 @@ class WorkflowAutomationTool:
     def install_xhands_command(self):
         bin_dir = self.get_xhands_command_path()
         bat_file = os.path.join(bin_dir, 'xHands.bat')
-        cli_path = os.path.join(bin_dir, 'xHands_cli.py')
         
-        if not os.path.exists(cli_path):
-            messagebox.showerror("错误", f"找不到 xHands_cli.py 文件:\n{cli_path}")
-            return
-        
-        try:
+        if hasattr(sys, 'frozen'):
+            exe_path = os.path.join(bin_dir, 'xhands.exe')
+            if not os.path.exists(exe_path):
+                messagebox.showerror("错误", f"找不到 xhands.exe 文件:\n{exe_path}")
+                return
+            bat_content = '''@echo off
+"%~dp0xhands.exe" %*
+'''
+        else:
+            cli_path = os.path.join(bin_dir, 'xHands_cli.py')
+            if not os.path.exists(cli_path):
+                messagebox.showerror("错误", f"找不到 xHands_cli.py 文件:\n{cli_path}")
+                return
             bat_content = '''@echo off
 python "%~dp0xHands_cli.py" %*
 '''
+        
+        try:
             try:
                 with open(bat_file, 'w', encoding='utf-8') as f:
                     f.write(bat_content)
@@ -862,7 +880,7 @@ python "%~dp0xHands_cli.py" %*
                 return
             
             self.refresh_cmd_status()
-            messagebox.showinfo("成功", f"xHands 命令已安装！\n\n安装位置: {bat_file}\nPATH 已添加: {bin_dir}\n\n请重新打开终端窗口后使用 xHands 命令")
+            messagebox.showinfo("成功", f"xHands 命令已安装！\n\n安装位置: {bat_file}\nPATH 已添加: {bin_dir}\n\n请重新打开终端窗口后使用 xhands 命令")
             
         except Exception as e:
             messagebox.showerror("错误", f"安装失败: {str(e)}")

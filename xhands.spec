@@ -19,6 +19,7 @@ a = Analysis(
         ('flowScripts', 'flowScripts'),
         ('flowPY', 'flowPY'),
         ('config.json', '.'),
+        ('xhands.ico', '.'),
     ],
     hiddenimports=[
         'tkinter',
